@@ -1,0 +1,11 @@
+{
+  "name": "01",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+	"type":"module",
+	"scripts": {
+		"first": "node first.js",
+		"second": "node second.js"
+	}
+}
