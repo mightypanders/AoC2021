@@ -1,0 +1,20 @@
+{
+  "name": "05",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node build/first.js",
+    "build": "tsc",
+		"watch": "yarn run build -- -w",
+		"monitor": "nodemon build/first.js"
+  },
+  "dependencies": {
+    "eslint": "^8.4.0",
+    "nodemon": "^2.0.15",
+    "typescript": "^4.5.2"
+  },
+  "devDependencies": {
+    "@types/node": "^16.11.11"
+  }
+}
