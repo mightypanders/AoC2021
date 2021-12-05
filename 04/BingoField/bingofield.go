@@ -60,67 +60,70 @@ func (b BingoField) getRows() [][]string {
 	return b.rows
 
 }
-func stringIsPresenInArray(input string, array []string) bool{
-	for _,x := range array{
-		if x == input{
+func stringIsPresenInArray(input string, array []string) bool {
+	for _, x := range array {
+		if x == input {
 			return true
 		}
 	}
 	return false
 }
-
-func hasMatchInCollection(collection [][]string, numbers []string) bool{
-	for _,subcol := range collection{
+func hasMatchInCollection(collection [][]string, numbers []string) bool {
+	for _, subcol := range collection {
 		matchcount := 0
-		for _,number := range numbers{
-			if stringIsPresenInArray(number,subcol){
+		for _, number := range numbers {
+			if stringIsPresenInArray(number, subcol) {
 				matchcount++
 			}
 		}
-		if matchcount >= 5{
-      fmt.Println("Match is found in ",collection)
-      return true
+		if matchcount >= 5 {
+			//fmt.Println("Match is found in ",collection)
+			return true
 		}
 	}
 	return false
 }
-
-func (b BingoField) GetScore(numbers[]string) int{
-	lastNum,e := strconv.Atoi(numbers[len(numbers)-1])
+func (b BingoField) GetScore(numbers []string) int {
+	lastNum, e := strconv.Atoi(numbers[len(numbers)-1])
 	checkErr(e)
-	notMatchedNumbers := make([]string,0)
-	for _, row := range b.rows{
-		for _, val := range row{
+	notMatchedNumbers := make([]string, 0)
+	for _, row := range b.rows {
+		for _, val := range row {
 			matched := false
-			for _,number := range numbers{
-				if val == number{
+			for _, number := range numbers {
+				if val == number {
 					matched = true
 					break
 				}
 			}
-			if !matched{
-				notMatchedNumbers = append(notMatchedNumbers,val)
+			if !matched {
+				notMatchedNumbers = append(notMatchedNumbers, val)
 			}
 		}
 	}
-	product := sumOfList(notMatchedNumbers)*int(lastNum)
+	sum := sumOfList(notMatchedNumbers)
+	fmt.Println("not Matched ",notMatchedNumbers)
+	fmt.Println("called numbers ",numbers)
+	fmt.Println("sum of not matched ",sum)
+	product := sum * int(lastNum)
 	return product
 }
-func sumOfList(numbers []string) int{
+func sumOfList(numbers []string) int {
 	acc := 0
-	for _, val := range(numbers){
-		inc,e := strconv.Atoi(val)
+	for _, val := range numbers {
+		inc, e := strconv.Atoi(val)
 		checkErr(e)
+		//fmt.Println("Acc ", acc, "Inc ", inc)
 		acc += inc
 	}
 	return acc
 }
-func (b BingoField) HasMatchInField(numbers []string) bool{
-	 return b.HasMatchInRows(numbers) || b.HasMatchInColumns(numbers)
+func (b BingoField) HasMatchInField(numbers []string) bool {
+	return b.HasMatchInRows(numbers) || b.HasMatchInColumns(numbers)
 }
 func (b BingoField) HasMatchInRows(numbers []string) bool {
-	return hasMatchInCollection(b.rows,numbers)
+	return hasMatchInCollection(b.rows, numbers)
 }
 func (b BingoField) HasMatchInColumns(numbers []string) bool {
-	return hasMatchInCollection(b.columns,numbers)
+	return hasMatchInCollection(b.columns, numbers)
 }
