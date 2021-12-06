@@ -141,8 +141,5 @@ interface ventLocation {
   x: number
   y: number
 }
-var difference = function (a: number, b: number) {
-  return Math.abs(a - b)
-}
 
 main()
