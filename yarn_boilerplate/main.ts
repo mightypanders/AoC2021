@@ -2,7 +2,6 @@
 import { readFileSync } from "fs"
 import { argv, exit } from "process"
 
-
 function main(): void {
 	console.log(JSON.stringify(argv))
 	if (argv[2] && argv[2] != "") {
