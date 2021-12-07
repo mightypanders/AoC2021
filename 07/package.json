@@ -1,0 +1,19 @@
+{
+  "name": "change_me",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node build/main.js",
+    "build": "cp *input build/ && tsc",
+    "watch": "yarn run build -- -w",
+    "monitor": "nodemon build/main.js testinput"
+  },
+  "dependencies": {
+    "nodemon": "^2.0.15",
+    "typescript": "^4.5.2"
+  },
+  "devDependencies": {
+    "@types/node": "^16.11.11"
+  }
+}
